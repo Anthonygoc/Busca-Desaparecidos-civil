@@ -12,7 +12,7 @@ import { PersonCardComponent } from '../../shared/components/person-card/person-
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule, // Essencial para o nosso formulário
+    ReactiveFormsModule,
     PersonCardComponent
   ],
   templateUrl: './home.component.html',
@@ -28,34 +28,30 @@ export class HomeComponent implements OnInit {
     private apiService: ApiService,
     private fb: FormBuilder
   ) {
-    // Inicializa o formulário de busca
     this.searchForm = this.fb.group({
       nome: [''],
       idadeMinima: [null],
       idadeMaxima: [null],
       sexo: [''],
-      status: ['DESAPARECIDO'] // Começa com 'Desaparecido' selecionado
+      status: ['DESAPARECIDO']
     });
   }
 
   ngOnInit(): void {
-    // Carrega os dados iniciais ao iniciar a página
     this.onSearch();
   }
 
   onSearch(): void {
     this.isLoading = true;
     const filters = this.searchForm.value;
-    // Por enquanto, apenas a busca paginada. Depois ligamos os filtros.
     this.peopleResponse$ = this.apiService.getPeople(0, 10);
 
-    // Simulando o fim do loading (o 'async' pipe vai tratar isso melhor)
     this.peopleResponse$.subscribe(() => this.isLoading = false);
   }
 
   onClear(): void {
     this.searchForm.reset({
-      status: 'DESAPARECIDO' // Volta ao estado inicial
+      status: 'DESAPARECIDO'
     });
     this.onSearch();
   }
