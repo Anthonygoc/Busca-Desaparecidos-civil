@@ -16,8 +16,8 @@ export class ApiService {
     const url = `${this.apiUrl}/aberto/filtro`;
 
     let params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString());
+      .set('pagina', page.toString())
+      .set('porPagina', size.toString());
 
     Object.keys(filters).forEach(key => {
       const value = filters[key];
