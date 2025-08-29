@@ -1,42 +1,47 @@
-# Projeto de Consulta - Pessoas Desaparecidas (PJC-MT)
+# Projeto de Consulta de Pessoas Desaparecidas - PJC-MT
 
-Este projeto é uma Single Page Application (SPA) desenvolvida em Angular como parte de um teste prático para a Polícia Judiciária Civil de Mato Grosso. A aplicação consome a API de pessoas desaparecidas para permitir que cidadãos consultem registros e enviem informações adicionais.
+## Visão Geral
 
-## ✨ Funcionalidades Planejadas
+Esta é uma Single Page Application (SPA) desenvolvida em Angular, criada como solução para o projeto prático do programa DESENVOLVE MT. O sistema consome a API da Polícia Judiciária Civil de Mato Grosso para fornecer uma interface pública para a consulta de registros de pessoas desaparecidas e localizadas.
 
-* **Consulta de Registros:** Visualização de pessoas desaparecidas e localizadas em formato de cards com paginação.
-* **Busca Avançada:** Campo de busca para filtrar registros conforme os parâmetros da API.
-* **Página de Detalhes:** Exibição de informações completas sobre um registro específico.
-* **Envio de Informações:** Formulário para que o cidadão possa enviar novas informações, como localização e fotos.
+O objetivo é oferecer uma ferramenta intuitiva e eficiente para que os cidadãos possam auxiliar na busca por pessoas desaparecidas.
+
+## ✨ Funcionalidades
+
+* **Consulta Paginada:** Exibição dos registros em formato de cards, com sistema de paginação para navegar entre os resultados.
+* **Busca por Filtros:** Formulário de busca avançada que permite filtrar os resultados por nome, faixa etária, sexo e status (desaparecido/encontrado), utilizando os parâmetros suportados pela API.
+* **Estatísticas em Tempo Real:** Apresentação de contadores de pessoas localizadas e desaparecidas, atualizados dinamicamente a partir da API.
+* **Página de Detalhes:** Navegação para uma visão detalhada de cada registro, exibindo informações completas da pessoa.
+* **(Em Desenvolvimento) Envio de Informações:** Funcionalidade para que o cidadão possa enviar novas informações sobre uma pessoa desaparecida.
 
 ## 🚀 Tecnologias Utilizadas
 
 * **Angular v17+**
-* **SCSS**
 * **TypeScript**
-* **Docker**
-* **GitHub Actions**
+* **SCSS** para estilização
+* **Docker** para containerização
+* **GitHub Actions** para CI/CD (Integração e Entrega Contínua)
 
-## 📦 Como Executar o Projeto
+## 📦 Execução do Projeto
 
-Siga os passos abaixo para configurar e executar o projeto em seu ambiente local.
+Siga os passos abaixo para configurar e executar o projeto em seu ambiente.
 
 ### Pré-requisitos
 
-* [Node.js](https://nodejs.org/) (versão 20.x LTS recomendada)
-* [Angular CLI](https://angular.io/cli) (instalado globalmente)
-* [Docker](https://www.docker.com/products/docker-desktop/) (para executar a versão em container)
+* Node.js (versão 20.x LTS recomendada)
+* Angular CLI (instalado globalmente via `npm install -g @angular/cli`)
+* Docker (para execução em container)
 
-### Instalação
+### 1. Execução Local
 
 1.  Clone o repositório:
     ```bash
-    git clone [https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
+    git clone [https://github.com/Anthonygoc/Busca-Desaparecidos-civil.git](https://github.com/Anthonygoc/Busca-Desaparecidos-civil.git)
     ```
 
 2.  Navegue até a pasta do projeto:
     ```bash
-    cd policia-civil-app
+    cd Busca-Desaparecidos-civil
     ```
 
 3.  Instale as dependências:
@@ -44,30 +49,66 @@ Siga os passos abaixo para configurar e executar o projeto em seu ambiente local
     npm install
     ```
 
-### Executando a Aplicação
+4.  Inicie o servidor de desenvolvimento:
+    ```bash
+    ng serve
+    ```
 
-Para iniciar o servidor de desenvolvimento, execute o comando:
+5.  Abra seu navegador e acesse `http://localhost:4200/`.
 
-```bash
-ng serve
-```
+### 2. Execução via Docker
 
-Abra seu navegador e acesse `http://localhost:4200/`.
+O projeto inclui um `Dockerfile` para execução em um ambiente containerizado.
 
-## 🐳 Docker & CI/CD
+1.  Construa a imagem Docker:
+    ```bash
+    docker build -t busca-desaparecidos-pjc .
+    ```
 
-O projeto está configurado para ser empacotado em um container Docker utilizando Nginx como servidor web.
+2.  Execute o container:
+    ```bash
+    docker run -p 8080:8080 busca-desaparecidos-pjc
+    ```
 
-O workflow de CI/CD no GitHub Actions é acionado a cada `push` nas branches principais, realizando o build da imagem Docker e o push para o GitHub Container Registry (GHCR).
+3.  Abra seu navegador e acesse `http://localhost:8080/`.
+
+## ⚙️ CI/CD (Integração e Entrega Contínua)
+
+O repositório está configurado com um workflow de GitHub Actions (`.github/workflows/build-push.yml`) que automatiza o processo de build da aplicação e da imagem Docker. A cada `push` para as branches `master` ou `develop`, a Action é acionada para:
+1.  Instalar as dependências do Node.js.
+2.  Realizar o build de produção da aplicação Angular.
+3.  Construir a imagem Docker.
+4.  Publicar a imagem no GitHub Container Registry (GHCR).
 
 ## 📂 Estrutura do Projeto
 
+A estrutura de arquivos principal da aplicação segue as convenções do Angular, organizada para escalabilidade e manutenção.
 
 ```
 src/app/
-├── core/         # Serviços centrais (ex: ApiService)
-├── pages/        # Componentes que representam as páginas/rotas
-├── shared/       # Componentes, modelos e diretivas reutilizáveis
+├── core/
+│   └── services/
+│       └── api.service.ts      # Serviço central para todas as requisições HTTP
+├── pages/
+│   ├── home/                   # Componente da página inicial (busca e listagem)
+│   └── person-details/         # Componente da página de detalhes
+├── shared/
+│   ├── components/
+│   │   └── person-card/        # Card reutilizável para exibir cada pessoa
+│   └── models/
+│       └── person.model.ts     # Interfaces e tipos (Person, Statistics, etc.)
+├── app.config.ts               # Configurações da aplicação (rotas, providers)
+├── app.routes.ts               # Definição das rotas da aplicação
 └── ...
 ```
 
+## 📄 Documentação da API
+
+A API utilizada neste projeto é fornecida pela Polícia Judiciária Civil de Mato Grosso. A documentação completa dos endpoints, modelos e parâmetros está disponível na interface Swagger:
+
+* **URL do Swagger:** [https://abitus-api.geia.vip/swagger-ui/index.html](https://abitus-api.geia.vip/swagger-ui/index.html)
+
+## 👤 Autor
+
+* **Nome:** [Anthony Gabriel Oliveira Cruz]
+* **Contato:** [anthonygabrieloliveiracruz@gmail.com]
