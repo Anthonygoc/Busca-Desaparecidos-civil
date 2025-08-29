@@ -1,4 +1,13 @@
-# 0.1.0 (2025-08-29)
+# [0.2.0](https://github.com/Anthonygoc/Busca-Desaparecidos-civil/compare/v0.1.0...v0.2.0) (2025-08-29)
+
+
+### Features
+
+* Reenderizando a pagina home com  os desaparecidos ([92741e1](https://github.com/Anthonygoc/Busca-Desaparecidos-civil/commit/92741e19677e32ed15b449878fdbf67c091ab367))
+
+
+
+# [0.1.0](https://github.com/Anthonygoc/Busca-Desaparecidos-civil/compare/ff754bdfb42b160bb941d07a42bc5072b996509a...v0.1.0) (2025-08-29)
 
 
 ### Features
