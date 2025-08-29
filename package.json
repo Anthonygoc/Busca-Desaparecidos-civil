@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:prod": "http-server -p 8080 -c-1 dist/policia-civil-app/browser/",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
