@@ -1,3 +1,13 @@
+# [0.3.0](https://github.com/Anthonygoc/Busca-Desaparecidos-civil/compare/v0.2.0...v0.3.0) (2025-08-29)
+
+
+### Features
+
+* implementando detalhar de pessoa desaparecida ([de76357](https://github.com/Anthonygoc/Busca-Desaparecidos-civil/commit/de76357c0ce6f86b73d10f5fa86f941196b48556))
+* implementando End point que retorna as estatisticas e reenderizando na pagina home Resolves [#7](https://github.com/Anthonygoc/Busca-Desaparecidos-civil/issues/7) ([93c1942](https://github.com/Anthonygoc/Busca-Desaparecidos-civil/commit/93c1942015a21846dc5b4aaaffd7b807b630e134))
+
+
+
 # [0.2.0](https://github.com/Anthonygoc/Busca-Desaparecidos-civil/compare/v0.1.0...v0.2.0) (2025-08-29)
 
 
