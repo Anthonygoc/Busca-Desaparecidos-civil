@@ -1,14 +1,14 @@
 <div class="person-card">
   <div class="person-card__image-container">
-    <img [src]="person.foto" [alt]="person.nome" (error)="onImageError($event)">
-    <span class="person-card__status" [ngClass]="person.status === 'LOCALIZADO' ? 'status--located' : 'status--missing'">
-      {{ person.status }}
+    <img [src]="imageUrl" [alt]="person.nome" (error)="onImageError($event)">
+    <span class="person-card__status" [ngClass]="status === 'LOCALIZADO' ? 'status--located' : 'status--missing'">
+      {{ status }}
     </span>
   </div>
   <div class="person-card__info">
     <h3 class="person-card__name">{{ person.nome }}</h3>
     <p class="person-card__details">
-      {{ person.idade }} anos | {{ person.cidade }} - {{ person.estado }}
+      {{ person.idade }} anos | {{ location }}
     </p>
     <button class="person-card__button">Ver Detalhes</button>
   </div>

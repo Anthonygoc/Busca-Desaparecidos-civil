@@ -1,19 +1,20 @@
-// Define a estrutura de um único registo de pessoa
+// Define a estrutura da última ocorrência associada a uma pessoa
+export interface UltimaOcorrencia {
+  dtDesaparecimento: string;
+  dataLocalizacao: string | null;
+  localDesaparecimentoConcat: string;
+}
+
 export interface Person {
   id: number;
   nome: string;
   idade: number;
   sexo: string;
-  status: 'DESAPARECIDO' | 'LOCALIZADO';
-  foto: string;
-  cidade: string;
-  estado: string;
-  dataDesaparecimento: string;
-  informacoes: string;
-  // Adicione outros campos que a API retornar, se necessário
+  vivo: boolean;
+  urlFoto: string | null;
+  ultimaOcorrencia: UltimaOcorrencia;
 }
 
-// Define a estrutura da resposta paginada da API
 export interface PaginatedResponse<T> {
   content: T[];
   pageable: any;
