@@ -1,8 +1,6 @@
-<!-- Secção Principal com Imagem de Fundo -->
 <header class="search-hero">
   <div class="search-hero__overlay"></div>
 
-  <!-- Container do Formulário de Busca -->
   <div class="search-hero__form-container">
     <h2>Busca</h2>
     <p>Digite as informações conhecidas para uma busca mais precisa</p>
@@ -47,27 +45,23 @@
     </form>
   </div>
 
-  <!-- Contadores de Status -->
-  <div class="stats-container">
+  <div class="stats-container" *ngIf="statistics$ | async as stats">
     <div class="stat-item">
       <span class="stat-label">LOCALIZADOS</span>
-      <span class="stat-number">4100</span>
+      <span class="stat-number">{{ stats.quantPessoasEncontradas }}</span>
     </div>
     <div class="stat-item">
       <span class="stat-label">DESAPARECIDOS</span>
-      <span class="stat-number">1060</span>
+      <span class="stat-number">{{ stats.quantPessoasDesaparecidas }}</span>
     </div>
   </div>
 </header>
 
-<!-- Secção de Resultados -->
 <main class="results-container">
   <h2 class="results-title">Resultado</h2>
 
-  <!-- Tratamento de Loading e Resposta da API -->
   <ng-container *ngIf="peopleResponse$ | async as response; else loadingOrError">
     <div *ngIf="response.content.length > 0; else noResults" class="results-grid">
-      <!-- O *ngFor vai aqui, chamando o nosso card -->
       <app-person-card *ngFor="let person of response.content" [person]="person"></app-person-card>
     </div>
 

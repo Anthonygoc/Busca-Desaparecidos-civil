@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 
 import { ApiService } from '../../core/services/api.service';
-import { PaginatedResponse, Person } from '../../shared/models/person.model';
+import {PaginatedResponse, Person, Statistics} from '../../shared/models/person.model';
 import { PersonCardComponent } from '../../shared/components/person-card/person-card.component';
 
 @Component({
@@ -22,6 +22,7 @@ import { PersonCardComponent } from '../../shared/components/person-card/person-
 export class HomeComponent implements OnInit {
 
   public peopleResponse$!: Observable<PaginatedResponse<Person>>;
+  public statistics$!: Observable<Statistics>;
   public searchForm: FormGroup;
   public isLoading = false;
   public hasError = false;
@@ -55,6 +56,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.onSearch();
+    this.loadStatistics();
   }
 
   onSearch(): void {
@@ -68,6 +70,15 @@ export class HomeComponent implements OnInit {
         console.error('Erro ao buscar pessoas:', error);
         this.hasError = true;
         return of(this.emptyResponse);
+      })
+    );
+  }
+  loadStatistics(): void {
+    this.statistics$ = this.apiService.getStatistics().pipe(
+      catchError(error => {
+        console.error('Erro ao buscar estatísticas:', error);
+        // Em caso de erro, retorna um objeto com valores zerados
+        return of({ quantPessoasDesaparecidas: 0, quantPessoasEncontradas: 0 });
       })
     );
   }

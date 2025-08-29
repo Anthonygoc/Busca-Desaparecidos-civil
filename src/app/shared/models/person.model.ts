@@ -28,3 +28,8 @@ export interface PaginatedResponse<T> {
   numberOfElements: number;
   empty: boolean;
 }
+
+export interface Statistics {
+  quantPessoasDesaparecidas: number;
+  quantPessoasEncontradas: number;
+}
