@@ -1,15 +1,17 @@
-<div class="person-card">
-  <div class="person-card__image-container">
-    <img [src]="imageUrl" [alt]="person.nome" (error)="onImageError($event)">
-    <span class="person-card__status" [ngClass]="status === 'LOCALIZADO' ? 'status--located' : 'status--missing'">
-      {{ status }}
-    </span>
+<a [routerLink]="['/pessoa', person.id]" class="person-card-link">
+  <div class="person-card">
+    <div class="person-card__image-container">
+      <img [src]="imageUrl" [alt]="person.nome" (error)="onImageError($event)">
+      <span class="person-card__status" [ngClass]="status === 'LOCALIZADO' ? 'status--located' : 'status--missing'">
+        {{ status }}
+      </span>
+    </div>
+    <div class="person-card__info">
+      <h3 class="person-card__name">{{ person.nome }}</h3>
+      <p class="person-card__details">
+        {{ person.idade }} anos | {{ location }}
+      </p>
+      <div class="person-card__button">Ver Detalhes</div>
+    </div>
   </div>
-  <div class="person-card__info">
-    <h3 class="person-card__name">{{ person.nome }}</h3>
-    <p class="person-card__details">
-      {{ person.idade }} anos | {{ location }}
-    </p>
-    <button class="person-card__button">Ver Detalhes</button>
-  </div>
-</div>
+</a>

@@ -33,7 +33,7 @@
           <label>Status:</label>
           <div class="radio-group">
             <label><input type="radio" formControlName="status" value="DESAPARECIDO"> Desaparecido</label>
-            <label><input type="radio" formControlName="status" value="LOCALIZADO"> Localizado</label>
+            <label><input type="radio" formControlName="status" value="ENCONTRADO"> Localizado</label>
           </div>
         </div>
       </div>
@@ -60,19 +60,31 @@
 <main class="results-container">
   <h2 class="results-title">Resultado</h2>
 
-  <ng-container *ngIf="peopleResponse$ | async as response; else loadingOrError">
-    <div *ngIf="response.content.length > 0; else noResults" class="results-grid">
+  <div *ngIf="isLoading" class="info-message">
+    Buscando, por favor aguarde...
+  </div>
+
+  <ng-container *ngIf="!isLoading">
+    <div *ngIf="response && response.content.length > 0; else noResults" class="results-grid">
       <app-person-card *ngFor="let person of response.content" [person]="person"></app-person-card>
     </div>
 
     <ng-template #noResults>
-      <p class="info-message">Nenhum registro encontrado para os filtros informados.</p>
+      <p class="info-message">
+        {{ hasError ? 'Ocorreu um erro ao buscar os dados. Tente novamente mais tarde.' : 'Nenhum registro encontrado para os filtros informados.' }}
+      </p>
     </ng-template>
   </ng-container>
 
-  <ng-template #loadingOrError>
-    <div *ngIf="isLoading" class="info-message">
-      Buscando, por favor aguarde...
-    </div>
-  </ng-template>
+  <div *ngIf="response && response.totalPages > 1 && !isLoading" class="pagination-container">
+    <button class="btn-page" (click)="previousPage()" [disabled]="response.first">
+      Anterior
+    </button>
+    <span class="page-info">
+      Página {{ (response.number || 0) + 1 }} de {{ response.totalPages }}
+    </span>
+    <button class="btn-page" (click)="nextPage()" [disabled]="response.last">
+      Próximo
+    </button>
+  </div>
 </main>

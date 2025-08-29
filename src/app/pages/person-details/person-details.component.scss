@@ -1,0 +1,131 @@
+:host {
+  display: block;
+  background-color: #f4f7f9;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.details-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  color: #0d2c4e;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #b9a021;
+  }
+}
+
+.details-card {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  &__image-section {
+    position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__info-section {
+    padding: 2rem;
+  }
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  color: #0d2c4e;
+}
+
+.status-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: bold;
+
+  &.status--missing { background-color: #c00; }
+  &.status--located { background-color: #28a745; }
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-block {
+  margin-bottom: 2rem;
+  p {
+    margin: 0.5rem 0 0;
+    line-height: 1.6;
+  }
+}
+
+.label {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.value {
+  font-size: 1.1rem;
+  color: #343a40;
+}
+
+.btn-add-info {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #b9a021;
+  color: #0d2c4e;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: darken(#b9a021, 10%);
+  }
+}
+
+.message {
+  text-align: center;
+  padding: 4rem;
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .details-card {
+    grid-template-columns: 1fr;
+  }
+  h1 { font-size: 2rem; }
+  .info-grid { grid-template-columns: 1fr; }
+}

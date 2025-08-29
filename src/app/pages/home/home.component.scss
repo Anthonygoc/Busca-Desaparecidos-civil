@@ -201,3 +201,40 @@
     gap: 1.25rem;
   }
 }
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.btn-page {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: #fff;
+  color: var(--text-dark);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+
+  &:hover:not(:disabled) {
+    background-color: var(--pjc-gold);
+    border-color: var(--pjc-gold);
+    color: var(--text-dark);
+  }
+
+  &:disabled {
+    background-color: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+    border-color: var(--border-color);
+  }
+}
+
+.page-info {
+  font-weight: 600;
+  color: var(--text-dark);
+}

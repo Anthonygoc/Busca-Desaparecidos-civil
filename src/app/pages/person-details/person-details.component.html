@@ -1,1 +1,58 @@
-<p>person-details works!</p>
+<div class="details-container">
+  <a routerLink="/" class="back-button">&larr; Voltar para a busca</a>
+
+  <div *ngIf="person$ | async as person; else loadingOrError">
+    <div class="details-card">
+      <div class="details-card__image-section">
+        <img [src]="person.urlFoto" (error)="onImageError($event)" [alt]="person.nome">
+        <span class="status-badge" [class.status--located]="person.vivo" [class.status--missing]="!person.vivo">
+          {{ person.vivo ? 'Localizado' : 'Desaparecido' }}
+        </span>
+      </div>
+
+      <div class="details-card__info-section">
+        <h1>{{ person.nome }}</h1>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Idade</span>
+            <span class="value">{{ person.idade }} anos</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Sexo</span>
+            <span class="value">{{ person.sexo }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Data do Desaparecimento</span>
+            <span class="value">{{ person.ultimaOcorrencia.dtDesaparecimento | date:'dd/MM/yyyy' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Local do Desaparecimento</span>
+            <span class="value">{{ person.ultimaOcorrencia.localDesaparecimentoConcat }}</span>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <span class="label">Vestimentas</span>
+          <p>{{ person.ultimaOcorrencia.ocorrenciaEntrevDesapDTO.vestimentasDesaparecido || 'Não informado' }}</p>
+        </div>
+
+        <div class="info-block">
+          <span class="label">Informações Adicionais</span>
+          <p>{{ person.ultimaOcorrencia.ocorrenciaEntrevDesapDTO.informacao || 'Nenhuma informação adicional cadastrada.' }}</p>
+        </div>
+
+        <button class="btn-add-info">Registrar Nova Informação</button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loadingOrError>
+    <div *ngIf="hasError; else loading" class="message">
+      Ocorreu um erro ao carregar os dados. Tente novamente.
+    </div>
+    <ng-template #loading>
+      <div class="message">Carregando...</div>
+    </ng-template>
+  </ng-template>
+</div>
