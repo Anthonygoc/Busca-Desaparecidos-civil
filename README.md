@@ -1,27 +1,73 @@
-# PoliciaCivilApp
+# Projeto de Consulta - Pessoas Desaparecidas (PJC-MT)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+Este projeto é uma Single Page Application (SPA) desenvolvida em Angular como parte de um teste prático para a Polícia Judiciária Civil de Mato Grosso. A aplicação consome a API de pessoas desaparecidas para permitir que cidadãos consultem registros e enviem informações adicionais.
 
-## Development server
+## ✨ Funcionalidades Planejadas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+* **Consulta de Registros:** Visualização de pessoas desaparecidas e localizadas em formato de cards com paginação.
+* **Busca Avançada:** Campo de busca para filtrar registros conforme os parâmetros da API.
+* **Página de Detalhes:** Exibição de informações completas sobre um registro específico.
+* **Envio de Informações:** Formulário para que o cidadão possa enviar novas informações, como localização e fotos.
 
-## Code scaffolding
+## 🚀 Tecnologias Utilizadas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* **Angular v17+**
+* **SCSS**
+* **TypeScript**
+* **Docker**
+* **GitHub Actions**
 
-## Build
+## 📦 Como Executar o Projeto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Siga os passos abaixo para configurar e executar o projeto em seu ambiente local.
 
-## Running unit tests
+### Pré-requisitos
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* [Node.js](https://nodejs.org/) (versão 20.x LTS recomendada)
+* [Angular CLI](https://angular.io/cli) (instalado globalmente)
+* [Docker](https://www.docker.com/products/docker-desktop/) (para executar a versão em container)
 
-## Running end-to-end tests
+### Instalação
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1.  Clone o repositório:
+    ```bash
+    git clone [https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
+    ```
 
-## Further help
+2.  Navegue até a pasta do projeto:
+    ```bash
+    cd policia-civil-app
+    ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+3.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+
+### Executando a Aplicação
+
+Para iniciar o servidor de desenvolvimento, execute o comando:
+
+```bash
+ng serve
+```
+
+Abra seu navegador e acesse `http://localhost:4200/`.
+
+## 🐳 Docker & CI/CD
+
+O projeto está configurado para ser empacotado em um container Docker utilizando Nginx como servidor web.
+
+O workflow de CI/CD no GitHub Actions é acionado a cada `push` nas branches principais, realizando o build da imagem Docker e o push para o GitHub Container Registry (GHCR).
+
+## 📂 Estrutura do Projeto
+
+
+```
+src/app/
+├── core/         # Serviços centrais (ex: ApiService)
+├── pages/        # Componentes que representam as páginas/rotas
+├── shared/       # Componentes, modelos e diretivas reutilizáveis
+└── ...
+```
+

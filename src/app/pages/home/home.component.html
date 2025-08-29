@@ -1,0 +1,84 @@
+<!-- Secção Principal com Imagem de Fundo -->
+<header class="search-hero">
+  <div class="search-hero__overlay"></div>
+
+  <!-- Container do Formulário de Busca -->
+  <div class="search-hero__form-container">
+    <h2>Busca</h2>
+    <p>Digite as informações conhecidas para uma busca mais precisa</p>
+
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search-form">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" formControlName="nome" placeholder="Nome da pessoa">
+      </div>
+
+      <div class="form-group-inline">
+        <div class="form-group">
+          <label>Faixa Etária:</label>
+          <div class="age-inputs">
+            <input type="number" formControlName="idadeMinima" placeholder="Mínima">
+            <input type="number" formControlName="idadeMaxima" placeholder="Máxima">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group-inline">
+        <div class="form-group">
+          <label>Sexo:</label>
+          <div class="radio-group">
+            <label><input type="radio" formControlName="sexo" value="MASCULINO"> Masculino</label>
+            <label><input type="radio" formControlName="sexo" value="FEMININO"> Feminino</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Status:</label>
+          <div class="radio-group">
+            <label><input type="radio" formControlName="status" value="DESAPARECIDO"> Desaparecido</label>
+            <label><input type="radio" formControlName="status" value="LOCALIZADO"> Localizado</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-clear" (click)="onClear()">Limpar</button>
+        <button type="submit" class="btn btn-search">Buscar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Contadores de Status -->
+  <div class="stats-container">
+    <div class="stat-item">
+      <span class="stat-label">LOCALIZADOS</span>
+      <span class="stat-number">4100</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">DESAPARECIDOS</span>
+      <span class="stat-number">1060</span>
+    </div>
+  </div>
+</header>
+
+<!-- Secção de Resultados -->
+<main class="results-container">
+  <h2 class="results-title">Resultado</h2>
+
+  <!-- Tratamento de Loading e Resposta da API -->
+  <ng-container *ngIf="peopleResponse$ | async as response; else loadingOrError">
+    <div *ngIf="response.content.length > 0; else noResults" class="results-grid">
+      <!-- O *ngFor vai aqui, chamando o nosso card -->
+      <app-person-card *ngFor="let person of response.content" [person]="person"></app-person-card>
+    </div>
+
+    <ng-template #noResults>
+      <p class="info-message">Nenhum registro encontrado para os filtros informados.</p>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #loadingOrError>
+    <div *ngIf="isLoading" class="info-message">
+      Buscando, por favor aguarde...
+    </div>
+  </ng-template>
+</main>

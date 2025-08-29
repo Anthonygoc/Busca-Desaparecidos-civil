@@ -1,0 +1,203 @@
+// Variáveis de cor inspiradas na identidade visual da PJC
+:host {
+  --pjc-gold: #b9a021;
+  --pjc-red: #c00;
+  --dark-blue: #0d2c4e;
+  --text-light: #f8f9fa;
+  --text-dark: #343a40;
+  --background-light: #fff;
+  --border-color: #dee2e6;
+}
+
+// --- Secção HERO ---
+.search-hero {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  min-height: 60vh;
+  background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(13, 44, 78, 0.7); // Overlay azul escuro
+  }
+}
+
+// --- Formulário de Busca ---
+.search-hero__form-container {
+  position: relative;
+  z-index: 2;
+  background-color: var(--background-light);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 550px;
+  color: var(--text-dark);
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+  }
+  p {
+    margin-bottom: 1.5rem;
+    color: #6c757d;
+  }
+}
+
+.search-form {
+  .form-group, .form-group-inline {
+    margin-bottom: 1.25rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  .form-group-inline {
+    display: flex;
+    gap: 1rem;
+    > .form-group {
+      flex: 1;
+    }
+  }
+
+  .age-inputs {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+
+    .btn {
+      flex: 1;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    .btn-clear {
+      background-color: var(--pjc-red);
+      color: var(--text-light);
+    }
+    .btn-search {
+      background-color: var(--pjc-gold);
+      color: var(--text-dark);
+    }
+  }
+}
+
+// --- Contadores ---
+.stats-container {
+  position: absolute;
+  z-index: 2;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  color: var(--text-light);
+
+  .stat-item {
+    text-align: center;
+    .stat-label {
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+    .stat-number {
+      display: block;
+      font-size: 3rem;
+      font-weight: 700;
+    }
+  }
+}
+
+
+// --- Secção de Resultados ---
+.results-container {
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .results-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .info-message {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: #6c757d;
+  }
+}
+
+// Media queries para responsividade
+@media (max-width: 992px) {
+  .stats-container {
+    display: none; // Esconde os contadores em telas menores
+  }
+}
+
+@media (max-width: 768px) {
+  .search-hero__form-container {
+    padding: 1.5rem;
+  }
+  .form-group-inline {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+}
