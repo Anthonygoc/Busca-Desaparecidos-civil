@@ -1,3 +1,12 @@
+## [0.3.1](https://github.com/Anthonygoc/Busca-Desaparecidos-civil/compare/v0.3.0...v0.3.1) (2025-08-29)
+
+
+### Bug Fixes
+
+* implementando detalhar de pessoa desaparecida                       Resolves [#10](https://github.com/Anthonygoc/Busca-Desaparecidos-civil/issues/10) ([49b539d](https://github.com/Anthonygoc/Busca-Desaparecidos-civil/commit/49b539d33372384590fcb1c243417051d38d8d7c))
+
+
+
 # [0.3.0](https://github.com/Anthonygoc/Busca-Desaparecidos-civil/compare/v0.2.0...v0.3.0) (2025-08-29)
 
 
